@@ -1112,3 +1112,368 @@ img {
     height: 400px;
   }
 }
+
+/* How It Works — match typography scale to other subpages */
+.step-copy h2 {
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+}
+
+.step-copy p {
+  font-size: 1.2rem;
+  line-height: 1.72;
+}
+
+.process-conclusion {
+  font-size: 1.2rem;
+}
+
+/* How It Works — bring process content to established subpage scale */
+.process {
+  max-width: 1120px;
+}
+
+.process-step {
+  grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.15fr);
+  gap: clamp(50px, 7vw, 95px);
+}
+
+.step-copy h2 {
+  font-size: clamp(2.35rem, 3.4vw, 3rem);
+  line-height: 1.12;
+}
+
+.step-copy p {
+  font-size: 1.32rem;
+  line-height: 1.68;
+}
+
+.process-conclusion {
+  font-size: 1.3rem;
+}
+
+/* ---------- How It Works: mobile artwork fix ---------- */
+
+@media (max-width: 780px) {
+
+  .process-step {
+    gap: 28px;
+  }
+
+  .process-step .step-copy {
+    order: 1 !important;
+  }
+
+  .process-step .step-art {
+    order: 2 !important;
+  }
+
+  /* Do not scale/collapse the absolute-positioned compositions */
+  .step-art-1,
+  .step-art-2,
+  .step-art-3 {
+    width: 100%;
+    transform: none;
+    margin-bottom: 0;
+    position: relative;
+  }
+
+  .step-art-1 {
+    min-height: 330px;
+  }
+
+  .step-art-2 {
+    min-height: 340px;
+  }
+
+  .step-art-3 {
+    min-height: 340px;
+  }
+
+  /* Keep all artwork inside the mobile viewport */
+  .step1-notes {
+    width: 38%;
+    left: 0;
+    top: 42px;
+  }
+
+  .step1-closet {
+    width: 48%;
+    left: 27%;
+    top: 18px;
+  }
+
+  .step1-value {
+    width: 32%;
+    right: 0;
+    top: 38px;
+  }
+
+  .step2-cost {
+    width: 50%;
+    left: 0;
+    top: 75px;
+  }
+
+  .step2-worker {
+    width: 68%;
+    right: 0;
+    top: 5px;
+  }
+
+  .step3-notes {
+    width: 33%;
+    left: 0;
+    top: 55px;
+  }
+
+  .step3-closet {
+    width: 46%;
+    left: 22%;
+    top: 28px;
+  }
+
+  .step3-lease {
+    width: 50%;
+    right: 0;
+    top: 38px;
+  }
+
+  /* Step 4/5 graph should fit the phone instead of becoming a 720px scroller */
+  .final-graph {
+    overflow: visible;
+    width: 100%;
+    margin-top: 12px;
+    padding-bottom: 0;
+  }
+
+  .final-graph img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: -8% 0 0;
+  }
+}
+
+/* ---------- How It Works: deterministic mobile artwork sizing ---------- */
+
+@media (max-width: 780px) {
+
+  .step-art-1,
+  .step-art-2,
+  .step-art-3 {
+    width: 100%;
+    height: 320px;
+    min-height: 320px;
+    overflow: visible;
+    transform: none;
+    margin: 0;
+  }
+
+  /* Step 1 */
+  .step1-notes {
+    width: 135px;
+    left: 0;
+    top: 48px;
+  }
+
+  .step1-closet {
+    width: 175px;
+    left: 92px;
+    top: 20px;
+  }
+
+  .step1-value {
+    width: 120px;
+    right: 0;
+    top: 45px;
+  }
+
+  /* Step 2 */
+  .step2-cost {
+    width: 175px;
+    left: 0;
+    top: 70px;
+  }
+
+  .step2-worker {
+    width: 245px;
+    right: 0;
+    top: 10px;
+  }
+
+  /* Step 3 */
+  .step3-notes {
+    width: 120px;
+    left: 0;
+    top: 55px;
+  }
+
+  .step3-closet {
+    width: 170px;
+    left: 80px;
+    top: 28px;
+  }
+
+  .step3-lease {
+    width: 195px;
+    right: 0;
+    top: 40px;
+  }
+}
+
+/* ---------- How It Works: restore true single-column mobile layout ---------- */
+
+@media (max-width: 780px) {
+  .process-step {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .process-step .step-copy,
+  .process-step .step-art {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .process-step .step-copy {
+    order: 1 !important;
+  }
+
+  .process-step .step-art {
+    order: 2 !important;
+  }
+}
+
+/* How It Works — mobile Steps 4/5 narrative order */
+@media (max-width: 780px) {
+  .process-final {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .final-step-4 {
+    grid-row: 1;
+  }
+
+  .final-graph {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 0;
+  }
+
+  .final-step-5 {
+    grid-row: 3;
+  }
+}
+
+/* How It Works — enlarge final visualization on mobile */
+@media (max-width: 780px) {
+  .final-graph {
+    width: 112%;
+    margin-left: -6%;
+  }
+
+  .final-graph img {
+    width: 100%;
+    max-width: none;
+    height: auto;
+  }
+}
+
+/* How It Works — final mobile visualization size */
+@media (max-width: 780px) {
+  .final-graph {
+    width: 118%;
+    margin-left: -9%;
+  }
+}
+
+/* How It Works — mobile graph legibility */
+@media (max-width: 780px) {
+  .final-graph {
+    width: 118%;
+    margin-left: -9%;
+    margin-top: 24px;
+    margin-bottom: 18px;
+  }
+
+  .final-graph img {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    transform: scaleY(1.25);
+    transform-origin: center;
+  }
+}
+
+/* How It Works — final mobile graph stretch */
+@media (max-width: 780px) {
+  .final-graph img {
+    transform: scaleY(1.35);
+  }
+}
+
+/* How It Works — give stretched mobile graph breathing room */
+@media (max-width: 780px) {
+  .final-graph {
+    margin-top: 60px;
+    margin-bottom: 28px;
+  }
+}
+
+/* Overview — mobile: illustration before copy */
+@media (max-width: 780px) {
+  .overview-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 28px;
+  }
+
+  .overview-sketch {
+    order: 1;
+    width: 100%;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .overview-copy {
+    order: 2;
+  }
+}
+
+/* Home — enlarge hero artwork on mobile */
+@media (max-width: 780px) {
+  .brownstone-hero {
+    width: 125%;
+    max-width: none;
+    margin-left: -12.5%;
+    margin-right: -12.5%;
+  }
+}
+
+/* Home — refine mobile hero artwork width */
+@media (max-width: 780px) {
+  .brownstone-hero {
+    width: 112%;
+    max-width: none;
+    margin-left: -6%;
+    margin-right: -6%;
+  }
+}
+
+/* Home — slightly taller mobile hero artwork */
+@media (max-width: 780px) {
+  .brownstone-hero {
+    transform: scaleY(1.15);
+    transform-origin: center;
+  }
+}
+
+/* Home — final mobile hero proportions */
+@media (max-width: 780px) {
+  .brownstone-hero {
+    transform: scaleY(1.22);
+  }
+}

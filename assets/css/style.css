@@ -588,3 +588,176 @@ img {
   height: auto;
   margin: 0 auto;
 }
+
+/* ---------- How It Works artwork ---------- */
+
+.step-sketch {
+  position: absolute;
+  display: block;
+  height: auto;
+}
+
+.step-art-1 {
+  min-height: 340px;
+}
+
+.step1-notes {
+  width: 38%;
+  left: 0;
+  top: 42px;
+}
+
+.step1-closet {
+  width: 48%;
+  left: 29%;
+  top: 18px;
+}
+
+.step1-value {
+  width: 34%;
+  right: -8%;
+  top: 38px;
+}
+
+.step-art-2 {
+  min-height: 360px;
+}
+
+.step2-cost {
+  width: 54%;
+  left: -7%;
+  top: 75px;
+}
+
+.step2-worker {
+  width: 72%;
+  right: -12%;
+  top: 5px;
+}
+
+.step-art-3 {
+  min-height: 360px;
+}
+
+.step3-notes {
+  width: 35%;
+  left: -5%;
+  top: 55px;
+}
+
+.step3-closet {
+  width: 48%;
+  left: 23%;
+  top: 28px;
+}
+
+.step3-lease {
+  width: 55%;
+  right: -24%;
+  top: 38px;
+}
+
+/* ---------- How It Works: Steps 4–5 ---------- */
+
+.process-final {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(50px, 8vw, 110px);
+  padding: 70px 0 55px;
+  border-bottom: 1px solid var(--soft-rule);
+}
+
+.final-step h2 {
+  margin: 0 0 16px;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.12;
+  font-weight: 400;
+}
+
+.final-step p {
+  margin: 0;
+  max-width: 470px;
+  font-size: 1.12rem;
+  line-height: 1.68;
+}
+
+.final-graph {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: 45px;
+  overflow: hidden;
+}
+
+.final-graph img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin-left: 0;
+  margin-top: -15%;
+}
+
+@media (max-width: 780px) {
+  .process-step .step-copy {
+    order: 1 !important;
+  }
+
+  .process-step .step-art {
+    order: 2 !important;
+  }
+
+  .step-art-1,
+  .step-art-2,
+  .step-art-3 {
+    min-height: 285px;
+    transform: scale(0.88);
+    transform-origin: top center;
+    margin-bottom: -25px;
+  }
+
+  .step-art-2,
+  .step-art-3 {
+    min-height: 245px;
+    margin-bottom: -55px;
+  }
+
+  .step1-value {
+    right: 0;
+  }
+
+  .step2-cost {
+    left: 0;
+  }
+
+  .step2-worker {
+    right: 0;
+  }
+
+  .step3-notes {
+    left: 0;
+  }
+
+  .step3-lease {
+    right: -5%;
+  }
+
+  .process-final {
+    grid-template-columns: 1fr;
+    gap: 42px;
+    padding: 50px 0 45px;
+  }
+
+  .final-graph {
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-top: 10px;
+    padding-bottom: 8px;
+  }
+
+  .final-graph img {
+    width: 720px;
+    max-width: none;
+    margin-left: 0;
+    margin-top: -105px;
+  }
+}

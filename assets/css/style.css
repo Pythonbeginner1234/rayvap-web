@@ -798,3 +798,42 @@ img {
     font-size: 2.4rem;
   }
 }
+
+/* How It Works — align step numbers beside titles */
+.step-copy,
+.final-step {
+  position: relative;
+}
+
+.step-copy .step-number,
+.final-step .step-number {
+  position: absolute;
+  left: 0;
+  top: 0;
+  line-height: 1;
+}
+
+.step-copy h2,
+.final-step h2 {
+  margin-left: 70px;
+  min-height: 2.65rem;
+}
+
+@media (max-width: 780px) {
+  .step-copy h2,
+  .final-step h2 {
+    margin-left: 52px;
+    min-height: 2.4rem;
+  }
+}
+
+/* Give Step 3 artwork a little more breathing room */
+.process-step:nth-child(3) .step-copy {
+  transform: translateX(45px);
+}
+
+@media (max-width: 780px) {
+  .process-step:nth-child(3) .step-copy {
+    transform: none;
+  }
+}

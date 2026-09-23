@@ -837,3 +837,278 @@ img {
     transform: none;
   }
 }
+
+/* ---------- Overview animation ---------- */
+
+.overview-animation {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.overview-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+  animation-duration: 11s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+/*
+  11-second story:
+  0–1.2    brownstone
+  1.2–2.2  clean plan
+  2.2–3.0  dishwasher
+  3.0–3.8  washer/dryer
+  3.8–4.8  exterior
+  4.8–6.7  storage
+  6.7–7.5  storage annotation
+  7.5–8.5  lease
+  8.5–10.0 uplift
+  10–11    brownstone return
+*/
+
+.ov-brownstone {
+  animation-name: ovBrownstone;
+}
+
+.ov-plan {
+  animation-name: ovPlan;
+}
+
+.ov-dw {
+  animation-name: ovDishwasher;
+}
+
+.ov-wd {
+  animation-name: ovWasherDryer;
+}
+
+.ov-exterior {
+  animation-name: ovExterior;
+}
+
+.ov-storage {
+  animation-name: ovStorage;
+}
+
+.ov-lease-base {
+  animation-name: ovLeaseBase;
+}
+
+.ov-lease-value {
+  animation-name: ovLeaseValue;
+}
+
+@keyframes ovBrownstone {
+  0%      { opacity: 1; }
+  8%      { opacity: 1; }
+  13%     { opacity: 0; }
+  91%     { opacity: 0; }
+  96%     { opacity: 1; }
+  100%    { opacity: 1; }
+}
+
+@keyframes ovPlan {
+  0%, 8%  { opacity: 0; }
+  13%     { opacity: 1; }
+  20%     { opacity: 1; }
+  24%     { opacity: 0; }
+  100%    { opacity: 0; }
+}
+
+@keyframes ovDishwasher {
+  0%, 18% { opacity: 0; }
+  22%     { opacity: 1; }
+  27%     { opacity: 1; }
+  31%     { opacity: 0; }
+  100%    { opacity: 0; }
+}
+
+@keyframes ovWasherDryer {
+  0%, 25% { opacity: 0; }
+  29%     { opacity: 1; }
+  34%     { opacity: 1; }
+  38%     { opacity: 0; }
+  100%    { opacity: 0; }
+}
+
+@keyframes ovExterior {
+  0%, 33% { opacity: 0; }
+  38%     { opacity: 1; }
+  43%     { opacity: 1; }
+  47%     { opacity: 0; }
+  100%    { opacity: 0; }
+}
+
+@keyframes ovStorage {
+  0%, 41% { opacity: 0; }
+  47%     { opacity: 1; }
+  64%     { opacity: 1; }
+  70%     { opacity: 0; }
+  100%    { opacity: 0; }
+}
+
+.overview-storage-note {
+  position: absolute;
+  left: 13%;
+  bottom: 10%;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #a84e43;
+  font-family: "Courier New", monospace;
+  font-size: clamp(0.55rem, 1.6vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  transform: rotate(-4deg);
+  opacity: 0;
+  animation: ovStorageNote 11s ease-in-out infinite;
+}
+
+.overview-storage-arrow {
+  display: inline-block;
+  font-size: 1.4em;
+  transform: rotate(-8deg);
+}
+
+@keyframes ovStorageNote {
+  0%, 54% { opacity: 0; transform: rotate(-4deg) translateY(4px); }
+  58%     { opacity: 1; transform: rotate(-4deg) translateY(0); }
+  64%     { opacity: 1; transform: rotate(-4deg) translateY(0); }
+  69%     { opacity: 0; }
+  100%    { opacity: 0; }
+}
+
+@keyframes ovLeaseBase {
+  0%, 65% { opacity: 0; }
+  71%     { opacity: 1; }
+  77%     { opacity: 1; }
+  81%     { opacity: 0; }
+  100%    { opacity: 0; }
+}
+
+@keyframes ovLeaseValue {
+  0%, 75% { opacity: 0; }
+  80%     { opacity: 1; }
+  90%     { opacity: 1; }
+  95%     { opacity: 0; }
+  100%    { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overview-scene,
+  .overview-storage-note {
+    animation: none;
+  }
+
+  .overview-scene {
+    opacity: 0;
+  }
+
+  .ov-lease-value {
+    opacity: 1;
+  }
+}
+
+
+/* Overview animation artwork scale correction */
+.overview-scene {
+  width: 180%;
+  height: 180%;
+  left: -40%;
+  top: -40%;
+  max-width: none;
+}
+
+
+/* ---------- Overview animation sizing correction ---------- */
+
+/* Undo the previous 180% artwork zoom */
+.overview-scene {
+  inset: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Give the illustration materially more page width */
+.overview-layout {
+  grid-template-columns: minmax(0, 1.25fr) minmax(400px, 1fr);
+  gap: clamp(45px, 6vw, 85px);
+  max-width: 1180px;
+}
+
+.overview-sketch {
+  padding-left: 32px;
+}
+
+.overview-animation {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+@media (max-width: 760px) {
+  .overview-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .overview-sketch {
+    padding: 40px 0 0;
+  }
+
+  .overview-animation {
+    width: min(100%, 520px);
+    margin: 0 auto;
+  }
+}
+
+/* Let Overview artwork use more of the illustration column */
+.overview-animation {
+  width: 100%;
+  aspect-ratio: auto;
+  height: 470px;
+}
+
+.overview-scene {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 760px) {
+  .overview-animation {
+    height: 360px;
+  }
+}
+
+/* Final small Overview illustration size bump */
+.overview-animation {
+  height: 510px;
+}
+
+@media (max-width: 760px) {
+  .overview-animation {
+    height: 380px;
+  }
+}
+
+/* Overview illustration — final sizing */
+.overview-animation {
+  height: 550px;
+}
+
+@media (max-width: 760px) {
+  .overview-animation {
+    height: 400px;
+  }
+}

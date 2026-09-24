@@ -1477,3 +1477,18 @@ img {
     transform: scaleY(1.22);
   }
 }
+
+
+/* ---------- Footer contact ---------- */
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+@media (max-width: 780px) {
+  .footer-contact {
+    align-items: center;
+  }
+}

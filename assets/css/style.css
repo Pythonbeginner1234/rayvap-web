@@ -1522,3 +1522,622 @@ img {
 .site-header .brand {
   align-items: center;
 }
+
+
+/* ---------- Contact ---------- */
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(360px, 1fr);
+  gap: clamp(70px, 10vw, 140px);
+  align-items: start;
+  max-width: 1030px;
+  margin: 76px auto 0;
+}
+
+.contact-copy {
+  font-size: 1.15rem;
+  line-height: 1.72;
+}
+
+.contact-copy h2 {
+  margin: 0 0 22px;
+  font-size: clamp(1.8rem, 3vw, 2.65rem);
+  line-height: 1.18;
+  font-weight: 400;
+}
+
+.contact-copy p {
+  margin: 0 0 38px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 11px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.contact-details a:hover {
+  text-decoration: underline;
+}
+
+.contact-form {
+  border-left: 1px solid var(--soft-rule);
+  padding-left: 48px;
+}
+
+.form-field {
+  margin-bottom: 25px;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.form-field input,
+.form-field textarea {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid rgba(23, 23, 21, 0.5);
+  border-radius: 0;
+  padding: 8px 2px 9px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  outline: none;
+}
+
+.form-field textarea {
+  min-height: 115px;
+  resize: vertical;
+  border: 1px solid rgba(23, 23, 21, 0.35);
+  padding: 12px;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--ink);
+}
+
+.contact-submit {
+  border: 1px solid var(--ink);
+  padding: 12px 22px;
+  background: transparent;
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.contact-submit:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+@media (max-width: 780px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    margin-top: 50px;
+  }
+
+  .contact-form {
+    border-left: 0;
+    border-top: 1px solid var(--soft-rule);
+    padding: 42px 0 0;
+  }
+}
+
+
+/* ---------- Contact animation ---------- */
+
+.contact-animation-section {
+  width: min(1180px, 100%);
+  margin: 38px auto 72px;
+}
+
+.contact-animation-frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1536 / 1024;
+  border: 0;
+  background: transparent;
+}
+
+@media (max-width: 780px) {
+  .contact-animation-section {
+    margin: 28px auto 48px;
+  }
+
+  .contact-animation-frame {
+    width: 100%;
+  }
+}
+
+/* Contact animation viewport — crop unused animation canvas whitespace */
+.contact-animation-section {
+  width: min(1000px, 100%);
+  height: 520px;
+  margin: 28px auto 58px;
+  overflow: hidden;
+  position: relative;
+}
+
+.contact-animation-frame {
+  position: absolute;
+  width: 1200px;
+  height: 800px;
+  max-width: none;
+  border: 0;
+
+  /* Pull the useful drawing upward into the viewport */
+  left: 50%;
+  top: -155px;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 780px) {
+  .contact-animation-section {
+    width: 100%;
+    height: 390px;
+    margin: 20px auto 42px;
+  }
+
+  .contact-animation-frame {
+    width: 900px;
+    height: 600px;
+    top: -105px;
+  }
+}
+
+/* ---------- Final Contact page spacing ---------- */
+
+/* Pull animation closer to heading and stop it owning the whole page */
+.contact-animation-section {
+  height: 475px;
+  margin: 0 auto 34px;
+}
+
+/* Bring actual contact information immediately beneath animation */
+.contact-layout {
+  margin-top: 0;
+}
+
+/* Slight breathing room before footer */
+.contact-layout + * {
+  margin-top: 40px;
+}
+
+@media (max-width: 780px) {
+  .contact-animation-section {
+    height: 360px;
+    margin: 0 auto 32px;
+  }
+
+  .contact-layout {
+    margin-top: 0;
+  }
+}
+
+/* ---------- Contact animation: final left-column placement ---------- */
+
+.contact-copy-animation {
+  position: relative;
+  width: 100%;
+  height: 245px;
+  margin: 8px 0 30px;
+  overflow: hidden;
+}
+
+.contact-copy-animation-frame {
+  position: absolute;
+  width: 610px;
+  height: 407px;
+  max-width: none;
+  border: 0;
+  left: 50%;
+  top: -78px;
+  transform: translateX(-50%);
+  background: transparent;
+}
+
+@media (max-width: 780px) {
+  .contact-copy-animation {
+    height: 300px;
+    margin: 10px 0 30px;
+  }
+
+  .contact-copy-animation-frame {
+    width: 720px;
+    height: 480px;
+    top: -82px;
+  }
+}
+
+/* ---------- Contact final spacing / animation scale ---------- */
+
+/* More breathing room below Contact heading */
+.contact-layout {
+  margin-top: 46px;
+}
+
+/* Larger animation without changing left-column proportions */
+.contact-copy-animation {
+  height: 315px;
+  margin: 14px 0 0;
+}
+
+.contact-copy-animation-frame {
+  width: 805px;
+  height: 537px;
+  top: -103px;
+}
+
+@media (max-width: 780px) {
+  .contact-layout {
+    margin-top: 38px;
+  }
+
+  .contact-copy-animation {
+    height: 325px;
+  }
+
+  .contact-copy-animation-frame {
+    width: 780px;
+    height: 520px;
+    top: -95px;
+  }
+}
+
+/* ---------- Contact final refinement ---------- */
+
+/* More separation from Contact title */
+.contact-layout {
+  margin-top: 76px;
+}
+
+/* Slightly quieter left-side copy */
+.contact-copy h2 {
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+  line-height: 1.16;
+  margin-bottom: 18px;
+}
+
+.contact-copy {
+  font-size: 1.08rem;
+}
+
+.contact-copy p {
+  margin-bottom: 24px;
+}
+
+/* Another step larger on the animation */
+.contact-copy-animation {
+  height: 350px;
+  margin-top: 8px;
+}
+
+.contact-copy-animation-frame {
+  width: 900px;
+  height: 600px;
+  top: -116px;
+}
+
+@media (max-width: 780px) {
+  .contact-layout {
+    margin-top: 48px;
+  }
+
+  .contact-copy-animation {
+    height: 340px;
+  }
+
+  .contact-copy-animation-frame {
+    width: 830px;
+    height: 553px;
+    top: -102px;
+  }
+}
+
+/* ---------- Contact left-column final sizing ---------- */
+
+/* Pull ONLY the left-hand content upward */
+.contact-copy {
+  transform: translateY(-28px);
+}
+
+/* Make animation substantially larger */
+.contact-copy-animation {
+  height: 390px;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.contact-copy-animation-frame {
+  width: 1080px;
+  height: 720px;
+  top: -142px;
+}
+
+@media (max-width: 780px) {
+  .contact-copy {
+    transform: none;
+  }
+
+  .contact-copy-animation {
+    height: 360px;
+  }
+
+  .contact-copy-animation-frame {
+    width: 900px;
+    height: 600px;
+    top: -115px;
+  }
+}
+
+/* ---------- Contact left-column final sizing ---------- */
+
+/* Pull ONLY the left-hand content upward */
+.contact-copy {
+  transform: translateY(-28px);
+}
+
+/* Make animation substantially larger */
+.contact-copy-animation {
+  height: 390px;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.contact-copy-animation-frame {
+  width: 1080px;
+  height: 720px;
+  top: -142px;
+}
+
+@media (max-width: 780px) {
+  .contact-copy {
+    transform: none;
+  }
+
+  .contact-copy-animation {
+    height: 360px;
+  }
+
+  .contact-copy-animation-frame {
+    width: 900px;
+    height: 600px;
+    top: -115px;
+  }
+}
+
+/* ---------- Contact animation: larger final pass ---------- */
+
+.contact-copy-animation {
+  height: 430px;
+}
+
+.contact-copy-animation-frame {
+  width: 1250px;
+  height: 833px;
+  top: -166px;
+}
+
+@media (max-width: 780px) {
+  .contact-copy-animation {
+    height: 380px;
+  }
+
+  .contact-copy-animation-frame {
+    width: 1000px;
+    height: 667px;
+    top: -130px;
+  }
+}
+
+/* Pull visible animation artwork upward toward the copy */
+.contact-copy-animation-frame {
+  top: -235px;
+}
+
+@media (max-width: 780px) {
+  .contact-copy-animation-frame {
+    top: -175px;
+  }
+}
+
+/* Contact animation — larger, preserving current vertical crop */
+.contact-copy-animation {
+  height: 455px;
+}
+
+.contact-copy-animation-frame {
+  width: 1440px;
+  height: 960px;
+  top: -270px;
+}
+
+@media (max-width: 780px) {
+  .contact-copy-animation {
+    height: 400px;
+  }
+
+  .contact-copy-animation-frame {
+    width: 1120px;
+    height: 747px;
+    top: -205px;
+  }
+}
+
+/* Pull visible animation artwork upward toward the copy */
+.contact-copy-animation-frame {
+  top: -235px;
+}
+
+@media (max-width: 780px) {
+  .contact-copy-animation-frame {
+    top: -175px;
+  }
+}
+
+/* Pull visible animation artwork upward toward the copy */
+.contact-copy-animation-frame {
+  top: -235px;
+}
+
+@media (max-width: 780px) {
+  .contact-copy-animation-frame {
+    top: -175px;
+  }
+}
+
+/* =========================================================
+   CONTACT ANIMATION — ACTUAL VISUAL SCALE
+   Scale the rendered iframe itself, not its internal canvas.
+   ========================================================= */
+
+.contact-copy-animation {
+  position: relative;
+  width: 100%;
+  height: 455px;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.contact-copy-animation-frame {
+  position: absolute;
+
+  /* Smaller logical iframe... */
+  width: 900px;
+  height: 600px;
+
+  /* ...physically magnified 1.55x */
+  transform: translateX(-50%) scale(1.55);
+  transform-origin: top center;
+
+  left: 50%;
+  top: -205px;
+
+  max-width: none;
+  border: 0;
+}
+
+@media (max-width: 780px) {
+  .contact-copy-animation {
+    height: 390px;
+  }
+
+  .contact-copy-animation-frame {
+    width: 800px;
+    height: 533px;
+    transform: translateX(-50%) scale(1.35);
+    top: -160px;
+  }
+}
+
+/* ---------- Contact animation: preserve 1.55x scale, stop clipping ---------- */
+
+/*
+Allow the enlarged animation to extend horizontally beyond the
+left column. The contact grid itself does not move.
+*/
+.contact-copy-animation {
+  width: 145%;
+  margin-left: -22.5%;
+  height: 455px;
+  overflow: hidden;
+}
+
+/* Keep the scale that finally looks right */
+.contact-copy-animation-frame {
+  width: 900px;
+  height: 600px;
+  left: 50%;
+  top: -205px;
+  transform: translateX(-50%) scale(1.55);
+  transform-origin: top center;
+}
+
+@media (max-width: 780px) {
+  .contact-copy-animation {
+    width: 100%;
+    margin-left: 0;
+    height: 390px;
+  }
+}
+
+/* =========================================================
+   CONTACT ANIMATION — FINAL LARGE VIEW WITHOUT INTERNAL CLIP
+   ========================================================= */
+
+.contact-copy-animation {
+  position: relative;
+  width: 145%;
+  margin-left: -22.5%;
+  height: 455px;
+  overflow: hidden;
+}
+
+/*
+Large iframe, NO transform scaling.
+This gives the animation a genuinely larger viewport instead
+of magnifying a smaller viewport and clipping its contents.
+*/
+.contact-copy-animation-frame {
+  position: absolute;
+  width: 1400px;
+  height: 933px;
+  max-width: none;
+
+  left: 50%;
+  top: -265px;
+
+  transform: translateX(-50%);
+  transform-origin: top center;
+
+  border: 0;
+  background: transparent;
+}
+
+@media (max-width: 780px) {
+  .contact-copy-animation {
+    width: 100%;
+    margin-left: 0;
+    height: 390px;
+  }
+
+  .contact-copy-animation-frame {
+    width: 1050px;
+    height: 700px;
+    top: -195px;
+  }
+}
+
+/* Contact animation: preserve final scale, expose left annotation */
+.contact-copy-animation-frame {
+  left: calc(50% + 55px);
+}
+
+@media (max-width: 780px) {
+  .contact-copy-animation-frame {
+    left: 50%;
+  }
+}
+
+/* Final animation framing micro-adjustment */
+.contact-copy-animation-frame {
+  left: calc(50% + 73px);
+}

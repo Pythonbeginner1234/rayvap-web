@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RVAP Contact Animation Production Test</title>
+
+<style>
+:root {
+  --paper: #f4f0e6;
+  --red: #d96f67;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+}
+
+.scene {
+  position: relative;
+  width: min(92vw, 760px);
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+.scene > img.base {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.patch {
+  position: absolute;
+  overflow: hidden;
+}
+
+.patch img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Coordinates expressed as percentages of 1536 x 1024. */
+
+.alcove {
+  left: 20.5078%;
+  top: 27.3438%;
+  width: 15.625%;
+  height: 49.8047%;
+}
+
+.dw {
+  left: 45.5729%;
+  top: 56.1523%;
+  width: 14.6484%;
+  height: 15.625%;
+}
+
+/* Empty alcove appears after the red W/D markup phase begins. */
+.alcove-empty {
+  opacity: 0;
+  animation: emptyCycle 12s ease-in-out infinite;
+}
+
+/* W/D progressively reveals downward. */
+.alcove-wd {
+  transform: translateX(1.1719%);
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  animation:
+    wdOpacity 12s linear infinite,
+    wdReveal 12s ease-in-out infinite;
+}
+
+/* Dishwasher progressively reveals downward. */
+.dw-final {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  animation:
+    dwOpacity 12s linear infinite,
+    dwReveal 12s ease-in-out infinite;
+}
+
+/* Red markup SVG */
+.markup {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.markup path,
+.markup rect {
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.markup text {
+  fill: var(--red);
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: .10em;
+}
+
+/* W/D markup */
+.wd-red {
+  opacity: 0;
+  animation: wdRedOpacity 12s ease-in-out infinite;
+}
+
+.wd-red path,
+.wd-red rect {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: wdRedDraw 12s linear infinite;
+}
+
+/* Dishwasher markup */
+.dw-red {
+  opacity: 0;
+  animation: dwRedOpacity 12s ease-in-out infinite;
+}
+
+.dw-red path,
+.dw-red rect {
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: dwRedDraw 12s linear infinite;
+}
+
+@keyframes emptyCycle {
+  0%, 20%   { opacity: 0; }
+  24%, 91%  { opacity: 1; }
+  97%, 100% { opacity: 0; }
+}
+
+@keyframes wdOpacity {
+  0%, 24%   { opacity: 0; }
+  26%, 91%  { opacity: 1; }
+  97%, 100% { opacity: 0; }
+}
+
+@keyframes wdReveal {
+  0%, 25%   { clip-path: inset(0 0 100% 0); }
+  42%, 100% { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes wdRedOpacity {
+  0%, 15%   { opacity: 0; }
+  18%, 27%  { opacity: 1; }
+  32%, 100% { opacity: 0; }
+}
+
+@keyframes wdRedDraw {
+  0%, 16%   { stroke-dashoffset: 900; }
+  26%, 100% { stroke-dashoffset: 0; }
+}
+
+@keyframes dwOpacity {
+  0%, 59%   { opacity: 0; }
+  61%, 91%  { opacity: 1; }
+  97%, 100% { opacity: 0; }
+}
+
+@keyframes dwReveal {
+  0%, 60%   { clip-path: inset(0 0 100% 0); }
+  76%, 100% { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes dwRedOpacity {
+  0%, 48%   { opacity: 0; }
+  51%, 61%  { opacity: 1; }
+  66%, 100% { opacity: 0; }
+}
+
+@keyframes dwRedDraw {
+  0%, 49%   { stroke-dashoffset: 700; }
+  59%, 100% { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alcove-empty { opacity: 1; animation: none; }
+  .alcove-wd,
+  .dw-final {
+    opacity: 1;
+    clip-path: none;
+    animation: none;
+  }
+  .wd-red,
+  .dw-red {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+  <img class="base"
+       src="assets/img/contact-animation-final/base-v2.png"
+       alt="Sketch of apartment kitchen improvements">
+
+  <div class="patch alcove alcove-empty">
+    <img src="assets/img/contact-animation-final/alcove-empty.png" alt="">
+  </div>
+
+  <div class="patch alcove alcove-wd">
+    <img src="assets/img/contact-animation-final/alcove-wd-final-v5.png" alt="">
+  </div>
+
+  <div class="patch dw dw-final">
+    <img src="assets/img/contact-animation-final/dishwasher-draftsman-face-v3.png" alt="">
+  </div>
+
+  <!-- intermediate empty dishwasher opening -->
+  <div class="dw-empty" aria-hidden="true"></div>
+
+
+  <!-- Surgical repair of top-left closet junction -->
+
+  <svg class="markup" viewBox="0 0 1536 1024" aria-hidden="true">
+
+    <g class="wd-red">
+
+      <!-- primary rough dashed box -->
+      <path class="wd-box" d="M355 255 L559 255"/>
+      <path class="wd-box" d="M559 255 L559 800"/>
+      <path class="wd-box" d="M559 800 L355 800"/>
+      <path class="wd-box" d="M355 800 L355 255"/>
+
+      <!-- faint imperfect second pencil pass -->
+      <path class="wd-box-ghost" d="M357 257 L557 256"/>
+      <path class="wd-box-ghost" d="M557 257 L558 798"/>
+      <path class="wd-box-ghost" d="M557 798 L357 799"/>
+      <path class="wd-box-ghost" d="M357 799 L356 257"/>
+
+      <text x="105" y="410" font-size="22">ADD</text>
+      <text x="105" y="442" font-size="22">WASHER / DRYER</text>
+
+      <path d="M245 455 Q285 465 350 515"/>
+      <path d="M329 498 L350 515 L324 518"/>
+
+    </g>
+
+    <g class="dw-red">
+
+      <!-- primary rough dashed box -->
+      <path class="dw-box" d="M705 585 L935 585"/>
+      <path class="dw-box" d="M935 585 L935 783"/>
+      <path class="dw-box" d="M935 783 L705 783"/>
+      <path class="dw-box" d="M705 783 L705 585"/>
+
+      <!-- faint imperfect second pencil pass -->
+      <path class="dw-box-ghost" d="M707 587 L933 586"/>
+      <path class="dw-box-ghost" d="M933 587 L934 781"/>
+      <path class="dw-box-ghost" d="M933 781 L707 782"/>
+      <path class="dw-box-ghost" d="M707 782 L706 587"/>
+
+      <text x="1060" y="360"
+            font-size="22"
+            text-anchor="middle">ADD</text>
+
+      <text x="1060" y="392"
+            font-size="22"
+            text-anchor="middle">DISHWASHER</text>
+
+      <path d="M1030 410
+               Q1060 470 1020 530
+               Q975 600 935 665"/>
+
+      <path d="M954 648
+               L935 665
+               L959 664"/>
+
+    </g>
+
+  </svg>
+
+</div>
+
+</body>
+</html>
+
+<style>
+.alcove {
+  left: 22.40%;
+  top: 25.45%;
+  width: 13.25%;
+  height: 53.20%;
+}
+
+.dw {
+  left: 45.25%;
+  top: 57.30%;
+  width: 15.50%;
+  height: 19.05%;
+}
+</style>
+
+<style>
+.alcove-wd img {
+  clip-path: inset(0 0 0 5%);
+}
+</style>
+
+<style>
+/* Preserve more of the W/D artwork while still hiding the left seam */
+.alcove-wd img {
+  clip-path: inset(0 0 0 2%);
+}
+</style>
+
+<style>
+/* FINAL dryer fascia: entirely above the dryer door */
+
+
+
+
+
+</style>
+
+<style>
+/* Final micro-alignment of W/D stack */
+.alcove {
+  left: 22.14%;
+}
+</style>
+
+<style>
+/* Final micro-nudge: W/D stack slightly left */
+.alcove {
+  left: 22.08%;
+}
+</style>
+
+<style>
+/* Micro-nudge W/D stack slightly farther left */
+.alcove {
+  left: 22.00%;
+}
+</style>
+
+<style>
+/* Final tiny W/D alignment nudge */
+.alcove {
+  left: 21.94%;
+}
+</style>
+
+<style>
+/* Manually tuned final appliance geometry */
+.alcove {
+  left: 21.94%;
+  top: 25.45%;
+  width: 14.16%;
+  height: 53.20%;
+}
+
+.dw {
+  left: 45.33%;
+  top: 57.30%;
+  width: 15.50%;
+  height: 19.05%;
+}
+</style>
+
+<style>
+/* Manually tuned appliance geometry — slider pass 2 */
+.alcove {
+  left: 21.94%;
+  top: 25.45%;
+  width: 14.60%;
+  height: 53.20%;
+}
+
+.dw {
+  left: 44.60%;
+  top: 57.30%;
+  width: 15.73%;
+  height: 19.05%;
+}
+</style>
+
+<style>
+/* Manually tuned appliance geometry — locked */
+.alcove {
+  left: 21.84%;
+  top: 25.45%;
+  width: 14.60%;
+  height: 53.20%;
+}
+
+.dw {
+  left: 44.60%;
+  top: 57.30%;
+  width: 15.73%;
+  height: 19.05%;
+}
+</style>
+
+<style>
+/* =========================================================
+   MARKUP POLISH
+   Boxes appear COMPLETE; only arrows draw.
+   Longer readable holds.
+   ========================================================= */
+
+/* Do NOT animate the perimeter of either red box */
+.wd-red rect,
+.dw-red rect {
+  stroke-dasharray: 12 12;
+  stroke-dashoffset: 0 !important;
+  animation: none !important;
+}
+
+/* W/D: slower appearance + longer readable hold */
+.wd-red {
+  animation: wdRedOpacityV2 12s ease-in-out infinite !important;
+}
+
+.wd-red path {
+  animation: wdRedDrawV2 12s ease-in-out infinite !important;
+}
+
+@keyframes wdRedOpacityV2 {
+  0%, 12%   { opacity: 0; }
+  16%, 35%  { opacity: 1; }
+  40%, 100% { opacity: 0; }
+}
+
+@keyframes wdRedDrawV2 {
+  0%, 15%   { stroke-dashoffset: 900; }
+  25%, 100% { stroke-dashoffset: 0; }
+}
+
+/* Dishwasher: same treatment */
+.dw-red {
+  animation: dwRedOpacityV2 12s ease-in-out infinite !important;
+}
+
+.dw-red path {
+  animation: dwRedDrawV2 12s ease-in-out infinite !important;
+}
+
+@keyframes dwRedOpacityV2 {
+  0%, 48%   { opacity: 0; }
+  52%, 72%  { opacity: 1; }
+  77%, 100% { opacity: 0; }
+}
+
+@keyframes dwRedDrawV2 {
+  0%, 51%   { stroke-dashoffset: 700; }
+  61%, 100% { stroke-dashoffset: 0; }
+}
+</style>
+
+<style>
+.dw-red path:nth-of-type(-n+4) {
+  stroke-dashoffset: 0 !important;
+  animation: none !important;
+}
+</style>
+
+<style>
+
+/* Rougher draftsman's red pencil */
+.markup path,
+.markup rect {
+  stroke-width: 3.8px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+/* Box segments: visibly dashed, slightly irregular spacing */
+.wd-box,
+.dw-box {
+  stroke-dasharray: 15 10 11 13 !important;
+  stroke-dashoffset: 0 !important;
+  animation: none !important;
+}
+
+/* Give the boxes a subtle second pencil pass */
+.wd-box-ghost,
+.dw-box-ghost {
+  stroke-width: 1.35px !important;
+  stroke-dasharray: 13 12 16 9 !important;
+  stroke-dashoffset: 4 !important;
+  opacity: .38;
+  animation: none !important;
+}
+
+</style>
+
+<style>
+
+.dw-empty {
+  position: absolute;
+
+  /* same tuned dishwasher footprint */
+  left: 44.60%;
+  top: 57.30%;
+  width: 15.73%;
+  height: 19.05%;
+
+  /* paper-colored empty appliance bay */
+  background: #f6f3ea;
+
+  /* retain a hand-drawn opening perimeter */
+  border-left: 1.4px solid #77736b;
+  border-right: 1.4px solid #77736b;
+  border-top: 1.2px solid #8a867d;
+  border-bottom: 1.2px solid #8a867d;
+
+  opacity: 0;
+  animation: dwEmptyCycle 12s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/*
+Sequence:
+cabinet drawers
+→ red markup
+→ blank opening
+→ dishwasher
+*/
+
+@keyframes dwEmptyCycle {
+  0%, 60%   { opacity: 0; }
+
+  /* drawers disappear; blank opening appears */
+  63%, 72%  { opacity: 1; }
+
+  /* dishwasher begins replacing blank opening */
+  77%, 100% { opacity: 0; }
+}
+
+/* Keep actual dishwasher above empty bay when it reveals */
+.dw-final {
+  z-index: 4;
+}
+
+/* Markup above everything */
+.markup {
+  z-index: 5;
+}
+
+</style>
+
+<style>
+/* Slightly slower dishwasher installation */
+@keyframes dwReveal {
+  0%, 60%   { clip-path: inset(0 0 100% 0); }
+  82%, 100% { clip-path: inset(0 0 0 0); }
+}
+
+/* Let the empty opening remain visible a little longer underneath */
+@keyframes dwEmptyCycle {
+  0%, 60%   { opacity: 0; }
+  63%, 75%  { opacity: 1; }
+  82%, 100% { opacity: 0; }
+}
+</style>
+
+<style>
+/* =========================================================
+   BOX POLISH — slower fade + slightly heavier pencil
+   ========================================================= */
+
+.wd-box,
+.dw-box {
+  stroke-width: 4.3px !important;
+}
+
+.wd-box-ghost,
+.dw-box-ghost {
+  stroke-width: 1.6px !important;
+}
+
+/* W/D box: gradual fade-in */
+.wd-box,
+.wd-box-ghost {
+  animation: wdBoxFade 12s ease-in-out infinite !important;
+}
+
+@keyframes wdBoxFade {
+  0%, 12%   { opacity: 0; }
+  22%       { opacity: 1; }
+  35%       { opacity: 1; }
+  40%, 100% { opacity: 0; }
+}
+
+/* Dishwasher box: gradual fade-in */
+.dw-box,
+.dw-box-ghost {
+  animation: dwBoxFade 12s ease-in-out infinite !important;
+}
+
+@keyframes dwBoxFade {
+  0%, 48%   { opacity: 0; }
+  58%       { opacity: 1; }
+  72%       { opacity: 1; }
+  77%, 100% { opacity: 0; }
+}
+</style>
+
+<style>
+
+/* FINAL DISHWASHER GEOMETRY */
+.dw,
+.dw-final {
+    left: 44.60% !important;
+    top: 57.30% !important;
+    width: 15.73% !important;
+    height: 19.05% !important;
+}
+
+/* Ensure the final face fills the approved patch cleanly */
+.dw img,
+.dw-final img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill !important;
+    display: block;
+}
+
+</style>
+
+<style>
+/* FINAL dishwasher micro-adjustment: right only */
+.dw,
+.dw-final {
+    left: 45.00% !important;
+}
+</style>
+
+<style>
+/* Dishwasher: final hair right */
+.dw,
+.dw-final {
+    left: 45.12% !important;
+}
+</style>
+
+<style>
+/* Dishwasher final micro-adjustment:
+   hair right + slightly longer at bottom only */
+.dw,
+.dw-final {
+    left: 45.22% !important;
+    top: 57.30% !important;
+    width: 15.73% !important;
+    height: 19.35% !important;
+}
+</style>

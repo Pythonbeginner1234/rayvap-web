@@ -2315,3 +2315,30 @@ of magnifying a smaller viewport and clipping its contents.
     padding-top: 18px;
   }
 }
+
+/* =========================================================
+   HOMEPAGE NAV — REAL PHONE WIDTH FIX
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  .home-nav {
+    width: 100%;
+    max-width: none;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 5px;
+    margin-top: 28px;
+  }
+
+  .home-nav a {
+    min-width: 0;
+    padding: 11px 3px;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    line-height: 1.25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}

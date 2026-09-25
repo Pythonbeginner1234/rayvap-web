@@ -2141,3 +2141,9 @@ of magnifying a smaller viewport and clipping its contents.
 .contact-copy-animation-frame {
   left: calc(50% + 73px);
 }
+
+/* Homepage navigation — five items */
+.home-nav {
+  grid-template-columns: repeat(5, 1fr);
+  max-width: 1040px;
+}

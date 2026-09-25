@@ -2147,3 +2147,171 @@ of magnifying a smaller viewport and clipping its contents.
   grid-template-columns: repeat(5, 1fr);
   max-width: 1040px;
 }
+
+/* =========================================================
+   CONTACT MOBILE — SINGLE VERTICAL STACK
+   Contact -> copy -> animation -> form
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  .page {
+    width: calc(100% - 36px);
+    padding: 42px 0 70px;
+  }
+
+  .page > .page-title {
+    font-size: 2.75rem;
+    margin: 0 0 52px;
+    text-align: center;
+  }
+
+  .contact-layout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    gap: 0;
+  }
+
+  .contact-copy {
+    order: 1;
+    width: 100%;
+    transform: none;
+    font-size: 1rem;
+  }
+
+  .contact-copy h2 {
+    font-size: 1.75rem;
+    line-height: 1.18;
+    margin: 0 0 18px;
+  }
+
+  .contact-copy p {
+    margin: 0 0 24px;
+    line-height: 1.65;
+  }
+
+  /* Animation belongs directly below the copy */
+  .contact-copy-animation {
+    position: relative;
+    width: 100%;
+    height: 330px;
+    margin: 0 0 42px;
+    overflow: hidden;
+  }
+
+  .contact-copy-animation-frame {
+    position: absolute;
+    width: 620px;
+    height: 413px;
+    max-width: none;
+
+    left: 50%;
+    top: -40px;
+    transform: translateX(-50%);
+
+    border: 0;
+  }
+
+  /* Form comes after the entire copy/animation block */
+  .contact-form {
+    order: 2;
+    width: 100%;
+    margin: 0;
+    padding: 38px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--soft-rule);
+  }
+
+  .form-field {
+    width: 100%;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    width: 100%;
+  }
+
+  .site-footer {
+    margin-top: 50px;
+  }
+}
+
+/* =========================================================
+   CONTACT MOBILE — COMPACT ABOVE-THE-FOLD PASS
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  /* Smaller Contact title + much less dead space below it */
+  .page > .page-title {
+    font-size: 2.25rem;
+    margin: 0 0 30px;
+  }
+
+  /* Tighten copy */
+  .contact-copy h2 {
+    font-size: 1.55rem;
+    margin-bottom: 12px;
+  }
+
+  .contact-copy p {
+    margin-bottom: 12px;
+    line-height: 1.55;
+  }
+
+  /* Move animation upward and consume less vertical page space */
+  .contact-copy-animation {
+    height: 285px;
+    margin: -4px 0 24px;
+  }
+
+  /* Preserve current artwork size, just frame it higher */
+  .contact-copy-animation-frame {
+    width: 620px;
+    height: 413px;
+    top: -65px;
+  }
+
+  /* Reduce gap before form */
+  .contact-form {
+    padding-top: 24px;
+  }
+}
+
+/* Contact mobile — one more compact pass */
+@media (max-width: 780px) {
+
+  .page {
+    padding-top: 30px;
+  }
+
+  .page > .page-title {
+    font-size: 2.05rem;
+    margin-bottom: 22px;
+  }
+
+  .contact-copy h2 {
+    font-size: 1.48rem;
+    margin-bottom: 9px;
+  }
+
+  .contact-copy p {
+    margin-bottom: 6px;
+    line-height: 1.48;
+  }
+
+  .contact-copy-animation {
+    height: 260px;
+    margin: -8px 0 16px;
+  }
+
+  .contact-copy-animation-frame {
+    top: -78px;
+  }
+
+  .contact-form {
+    padding-top: 18px;
+  }
+}

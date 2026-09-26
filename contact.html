@@ -52,15 +52,22 @@
       </div>
     </div>
 
-    <form class="contact-form">
+    <form class="contact-form"
+          action="https://api.web3forms.com/submit"
+          method="POST">
+
+      <input type="hidden" name="access_key" value="922eebb0-ce05-42f7-af4d-b9a1e2677087">
+      <input type="hidden" name="subject" value="New RVAP website inquiry">
+      <input type="hidden" name="flyer_batch" id="flyer-batch" value="direct">
+      <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
       <div class="form-field">
         <label for="contact-name">Name</label>
-        <input id="contact-name" name="name" type="text" autocomplete="name">
+        <input id="contact-name" name="name" type="text" autocomplete="name" required>
       </div>
 
       <div class="form-field">
         <label for="contact-reply">Email or phone</label>
-        <input id="contact-reply" name="reply" type="text">
+        <input id="contact-reply" name="reply" type="text" required>
       </div>
 
       <div class="form-field">
@@ -73,7 +80,7 @@
         <textarea id="contact-message" name="message" rows="5"></textarea>
       </div>
 
-      <button class="contact-submit" type="button">Send inquiry</button>
+      <button class="contact-submit" type="submit">Send inquiry</button>
     </form>
 
   </section>
@@ -87,6 +94,51 @@
     <a href="tel:+13475667644">347-566-7644</a>
   </div>
 </footer>
+
+<script>
+  const contactForm = document.querySelector(".contact-form");
+  const flyerSource = new URLSearchParams(window.location.search).get("src");
+
+  if (flyerSource) {
+    document.getElementById("flyer-batch").value = flyerSource;
+  }
+
+  contactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const submitButton = contactForm.querySelector(".contact-submit");
+    const originalText = submitButton.textContent;
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        body: new FormData(contactForm)
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error("Submission failed");
+      }
+
+      contactForm.innerHTML = `
+        <div>
+          <h2 style="margin:0 0 14px;">Thank you.</h2>
+          <p style="margin:0; line-height:1.6;">
+            Your inquiry has been received. We'll be in touch.
+          </p>
+        </div>
+      `;
+    } catch (error) {
+      submitButton.disabled = false;
+      submitButton.textContent = originalText;
+      alert("We couldn't send your inquiry. Please try again, or email hello@rayvap.com.");
+    }
+  });
+</script>
 
 <script src="assets/js/main.js"></script>
 </body>
